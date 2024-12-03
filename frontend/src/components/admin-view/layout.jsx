@@ -3,7 +3,7 @@ import React from 'react'
 const AdminViewLayout = () => {
 	return (
 		<div>
-			AdminView Layout Component
+			Admin View Layout Page
 		</div>
 	)
 }
