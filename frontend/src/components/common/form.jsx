@@ -8,7 +8,7 @@ import { Button } from '../ui/button'
 const CommonForm = ({formControls,formData,setFormData,onSubmit,buttonText}) => {
     function renderInputControllersByType(controlItems){
         const value = formData[controlItems.name] || '';
-        switch(controlItems.type){
+        switch(controlItems.componentType){
             case 'text':
                 return <Input
                     name={controlItems.name}
@@ -20,29 +20,31 @@ const CommonForm = ({formControls,formData,setFormData,onSubmit,buttonText}) => 
                 />
             case 'select':
                 return <Select 
-                    onValueChange={(v)=> setFormData({...formData,[controlItems]:v})} 
+                    onValueChange={(v)=> setFormData({...formData,[controlItems.name]:v})} 
                     value={value}
                 >
-                        <SelectTrigger className= "w-full">
-                            <SelectValue placeholder = {controlItems.placeholder}/>
-                        </SelectTrigger>
-                        <SelectContent>
-                            {
-                                controlItems.options && controlItems.options.length > 0 ? 
-                                controlItems.options.map(option => <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>):null
-                            }
-                        </SelectContent>
-                    </Select>
+                    <SelectTrigger className= "w-full">
+                        <SelectValue placeholder = {controlItems.label}/>
+                    </SelectTrigger>
+                    <SelectContent>
+                        {
+                            controlItems.options && controlItems.options.length > 0 ? 
+                            controlItems.options.map((option) => (
+                                    <SelectItem key={option?.id} value={option.id}>{option.label}</SelectItem>
+                                )
+                            ):null
+                        }
+                    </SelectContent>
+                </Select>
             case "textarea":
                 return <Textarea
                     value={value}
                     name={controlItems.name}
                     placeholder={controlItems.placeholder}
                     id = {controlItems.name}
-                    onChange={(e) => setFormData({...formData, [controlItems.name]: e.target.value})}
+                    onChange={(e) => setFormData({...formData,[controlItems.name]: e.target.value})}
                 />
             default:
-
                 return <Input
                     value={value}
                     name={controlItems.name}

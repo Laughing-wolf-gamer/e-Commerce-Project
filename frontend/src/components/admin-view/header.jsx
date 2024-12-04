@@ -10,7 +10,6 @@ const AdminHeaderLayout = ({setOpen}) => {
                 <span className='sr-only'>Toggle Menu</span>
             </Button>
             <div className='flex flex-1 justify-end'>
-
                 <Button className = "inline-flex items-center px-4 rounded-md font-medium shadow">
                     <LogOut />
                     Logout
