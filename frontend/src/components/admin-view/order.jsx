@@ -1,9 +1,9 @@
 import React from 'react'
 
-const order = () => {
+const AdminOrderLayout = () => {
 	return (
 		<div>order</div>
 	)
 }
 
-export default order
+export default AdminOrderLayout

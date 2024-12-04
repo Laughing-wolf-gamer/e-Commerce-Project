@@ -1,9 +1,9 @@
 import React from 'react'
 
-const AdminHeader = () => {
+const AdminHeaderLayout = () => {
 	return (
-		<div className=''>header</div>
+		<div>Admin header</div>
 	)
 }
 
-export default AdminHeader
+export default AdminHeaderLayout
