@@ -54,7 +54,7 @@ const CommonForm = ({formControls,formData,setFormData,onSubmit,buttonText}) => 
         }
     }
     return (
-        <form onSubmit={onsubmit}>
+        <form onSubmit={onSubmit}>
             <div className='flex flex-col gap-3'>
                 {
                     formControls.map(controlItem => (
