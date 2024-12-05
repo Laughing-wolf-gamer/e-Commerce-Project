@@ -9,6 +9,7 @@ import { fetchAllFilteredShopProducts, fetchProductDetails } from '@/store/shop/
 import ShoppingViewProductTile from './ShoppingViewProductTile'
 import { useSearchParams } from 'react-router-dom'
 import ProductDetailsDialogue from '@/components/shopping-view/ProductDetails'
+import { addToCart, fetchCartItems } from '@/store/shop/car-slice'
 const createSearchParamsHelper = (filterParams)=>{
     const queryParam = [];
     for(const [key,value] of Object.entries(filterParams)){
@@ -20,6 +21,7 @@ const createSearchParamsHelper = (filterParams)=>{
 }
 const ShoppingListing = () => {
     const dispatch = useDispatch();
+    const {user} = useSelector(state => state.auth)
     const {products,ProductDetails} = useSelector(state => state.shopProductSlice)
     const[filters ,setFilters] = useState({});
     const[sort ,setSort] = useState('price-low-to-high');
@@ -73,10 +75,13 @@ const ShoppingListing = () => {
             setOpenDetails(true);
         }
     },[ProductDetails])
-    console.log("ProductDetails",ProductDetails);
-
-
-
+    const handleAddToCart = async (productId)=>{
+        const result = await dispatch(addToCart({userId:user?.id,productId:productId,quantity:1}))
+        if(result?.payload?.Success){
+            await dispatch(fetchCartItems({userId:user?.id}))
+        }
+    }
+    
     return (
         <div className='grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6'>
             <ProductFilter filters={filters} handleFilters={handleFilters}/>
@@ -116,12 +121,12 @@ const ShoppingListing = () => {
                     {/* Product Card */}
                     {
                         products && products.length && products.map((product,index)=>(
-                            <ShoppingViewProductTile key={index} product={product} handleGetProductDetails={handleGetProductDetails}/>
+                            <ShoppingViewProductTile key={index} product={product} handleGetProductDetails={handleGetProductDetails} handleAddToCart={handleAddToCart}/>
                         ))
                     }
                 </div>
             </div>
-            <ProductDetailsDialogue open={openDetails} setOpen={setOpenDetails} ProductDetails={ProductDetails} />
+            <ProductDetailsDialogue open={openDetails} setOpen={setOpenDetails} ProductDetails={ProductDetails} handleAddToCart={handleAddToCart}/>
         </div>
     )
 }

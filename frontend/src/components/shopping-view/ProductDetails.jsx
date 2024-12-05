@@ -6,7 +6,7 @@ import { Avatar, AvatarFallback } from '../ui/avatar'
 import { StarIcon } from 'lucide-react'
 import { Input } from '../ui/input'
 
-const ProductDetailsDialogue = ({ProductDetails,open,setOpen}) => {
+const ProductDetailsDialogue = ({ProductDetails,open,setOpen,handleAddToCart}) => {
     return (
         <Dialog open = {open} onOpenChange={setOpen}>
             <DialogContent className = "grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw]">
@@ -41,7 +41,7 @@ const ProductDetailsDialogue = ({ProductDetails,open,setOpen}) => {
                         <span className='text-muted-foreground mt-2'>4.5</span>
                     </div>
                     <div className='mt-5 mb-5'>
-                        <Button className = {"w-full bg-black"}>Add To Cart</Button>
+                        <Button onClick = {()=>handleAddToCart(ProductDetails?._id)} className = {"w-full bg-black"}>Add To Cart</Button>
                     </div>
                     <Separator/>
                     <div className='max-h-[350px] overflow-auto'>
