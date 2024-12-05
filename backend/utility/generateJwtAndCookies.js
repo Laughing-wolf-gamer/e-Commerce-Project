@@ -5,7 +5,8 @@ export const GenerateJWTAndCookies = (user,res)=>{
     const token =jwt.sign({
         id:user._id,
         role:user.role,
-        email:user.email
+        email:user.email,
+        userName:user.userName,
     },process.env.JWT_SECRETE,{
         expiresIn: '1h',
     })

@@ -6,6 +6,8 @@ import cookieParser from 'cookie-parser';
 
 import { connectToMongo } from './db/connectToDb.js';
 import authRouter from './routes/authentication/auth.route.js'
+import adminRouter from './routes/admin/admin.route.js'
+import shopRoute from './routes/shop/shop.route.js';
 
 dotenv.config()
 
@@ -23,6 +25,8 @@ app.use(cors(
 ))
 app.use(cookieParser());
 app.use('/api/auth',authRouter)
+app.use('/api/admin',adminRouter)
+app.use('/api/shop/products',shopRoute)
 
 connectToMongo().then(()=>{
     app.listen(port,()=> console.log(`Server listening on port ${port}`))

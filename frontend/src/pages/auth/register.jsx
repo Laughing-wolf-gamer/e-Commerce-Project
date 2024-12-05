@@ -50,7 +50,7 @@ const AuthRegister = () => {
                     <Link className='font-medium ml-2 text-primary hover:underline' to= "/auth/login"> LogIn</Link>
                 </p>
             </div>
-            <CommonForm formControls={registerFormControls} setFormData={setFormData} formData={formData} onSubmit={onSubmit} buttonText={"Register"}/>
+            <CommonForm formControls={registerFormControls} setFormData={setFormData} formData={formData} onSubmit={onSubmit} buttonText={"Register"} isBtnValid={true}/>
         </div>
 	)
 }

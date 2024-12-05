@@ -49,7 +49,7 @@ const AuthLogIn = () => {
                     <Link className='font-medium ml-2 text-primary hover:underline' to= "/auth/register"> Register</Link>
                 </p>
             </div>
-            <CommonForm formControls={loginFormControls} setFormData={setFormData} formData={formData} onSubmit={onSubmit} buttonText={"Log In"}/>
+            <CommonForm formControls={loginFormControls} setFormData={setFormData} formData={formData} onSubmit={onSubmit} buttonText={"Log In"} isBtnValid={true}/>
         </div>
 	)
 }

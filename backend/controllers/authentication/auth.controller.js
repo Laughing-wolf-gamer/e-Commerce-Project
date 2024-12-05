@@ -35,9 +35,10 @@ export const logInUser = async (req,res) =>{
         }
         GenerateJWTAndCookies(user,res);
         res.status(200).json({Success:true,message: 'User logged in successfully',user:{
+            userName:user.userName,
             email:user.email,
             role: user.role,
-            id: user._id
+            id: user._id,
         }})
     } catch (error) {
         console.error(`Error Logging in user ${error.message}`);
