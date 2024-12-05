@@ -40,12 +40,13 @@ const authSlice = createSlice({
             state.isLoading = true;
         }).addCase(checkAuth.fulfilled,(state,action)=>{
             state.isLoading = false;
-            state.isAuthenticated = !action?.payload?.Success ? false:true;
+            state.isAuthenticated = action?.payload?.Success;
             state.user = !action?.payload?.Success ? null:action?.payload?.user;
         }).addCase(checkAuth.rejected,(state,action)=>{
             state.isLoading = false;
             state.isAuthenticated = false;
             state.user = null;
+            
         }).addCase(logoutUser.fulfilled,(state,action)=>{
             state.isLoading = false;
             state.isAuthenticated = false
@@ -104,7 +105,7 @@ export const checkAuth = createAsyncThunk('/auth/checkAuth',
                     'Cache-Control': 'no-store, no-cache, must-revalidate proxy-revalidate'
                 }
             });
-            console.log('response',response);
+            console.log('response',response.data);
             return response.data;
         } catch (error) {
             console.error(error);

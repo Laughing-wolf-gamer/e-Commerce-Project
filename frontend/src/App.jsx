@@ -26,13 +26,22 @@ function App() {
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(checkAuth());
-    },[dispatch])
+    },[])
     if(isLoading) return (
         <Skeleton className={"w-[600px] h-[600px] rounded-full"}/>
     )
     return (
         <div className='flex flex-col overflow-hidden bg-white'>
             <Routes>
+            <Route
+                path="/"
+                element={
+                    <CheckAuth
+                        isAuthenticated={isAuthenticated}
+                        user={user}
+                    ></CheckAuth>
+                }
+                />
                 <Route path="/auth" element={
                     <CheckAuth isAuthenticated={isAuthenticated} user={user}>
                         <AuthLayout/>

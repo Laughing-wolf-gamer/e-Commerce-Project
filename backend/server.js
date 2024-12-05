@@ -9,6 +9,7 @@ import authRouter from './routes/authentication/auth.route.js'
 import adminRouter from './routes/admin/admin.route.js'
 import shopRoute from './routes/shop/shop.route.js';
 import cartRoute from './routes/cart/cart.route.js';
+import addressRoute from './routes/shop/address.route.js';
 
 dotenv.config()
 
@@ -30,6 +31,7 @@ app.use('/api/auth',authRouter)
 app.use('/api/admin',adminRouter)
 app.use('/api/shop/products',shopRoute)
 app.use('/api/cart',cartRoute)
+app.use('/api/accounts/address',addressRoute)
 
 
 connectToMongo().then(()=>{
