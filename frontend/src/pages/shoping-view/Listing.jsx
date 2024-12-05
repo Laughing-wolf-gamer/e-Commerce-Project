@@ -10,6 +10,7 @@ import ShoppingViewProductTile from './ShoppingViewProductTile'
 import { useSearchParams } from 'react-router-dom'
 import ProductDetailsDialogue from '@/components/shopping-view/ProductDetails'
 import { addToCart, fetchCartItems } from '@/store/shop/car-slice'
+import { useToast } from '@/hooks/use-toast'
 const createSearchParamsHelper = (filterParams)=>{
     const queryParam = [];
     for(const [key,value] of Object.entries(filterParams)){
@@ -27,6 +28,7 @@ const ShoppingListing = () => {
     const[sort ,setSort] = useState('price-low-to-high');
     const[searchParams,setSearchParams] = useSearchParams();
     const[openDetails,setOpenDetails] = useState(false);
+    const{toast} = useToast();
 
 
     useEffect(()=>{
@@ -73,12 +75,17 @@ const ShoppingListing = () => {
     useEffect(()=>{
         if(ProductDetails){
             setOpenDetails(true);
+            
         }
     },[ProductDetails])
     const handleAddToCart = async (productId)=>{
         const result = await dispatch(addToCart({userId:user?.id,productId:productId,quantity:1}))
         if(result?.payload?.Success){
             await dispatch(fetchCartItems({userId:user?.id}))
+            toast({
+                title: "Product Added to Cart Successfully",
+                description: result?.payload?.message,
+            });
         }
     }
     

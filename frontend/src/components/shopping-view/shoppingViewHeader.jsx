@@ -10,16 +10,27 @@ import { Avatar, AvatarFallback } from '../ui/avatar'
 import { logoutUser } from '@/store/auth-slice'
 import CartWrapper from './CartWrapper'
 import { fetchCartItems } from '@/store/shop/car-slice'
+import { Label } from '@radix-ui/react-dropdown-menu'
 
 
 
 const MenuItems = ()=>{
+    const navigate = useNavigate();
+    function handleNavigate(item){
+        
+        sessionStorage.removeItem('filters');
+        const currentFilters = item.id !== 'home'? {
+            category:[item.id]
+        }:null;
+        sessionStorage.setItem('filters', JSON.stringify(currentFilters));
+        navigate(item?.path)
+    }
     return <nav className='flex flex-col mb-3 lg:items-center gap-7 lg:flex-row'>
         {
             shoppingviewHeaderMenuItems.map((item)=> (
-                <Link key={item.id} to = {item.path} className='text-sm font-medium'>
+                <Label key={item.id} onClick={()=> handleNavigate(item)} className='text-sm font-medium cursor-pointer'>
                     {item.label}
-                </Link>
+                </Label>
             ))
         }
     </nav>

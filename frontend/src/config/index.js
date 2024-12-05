@@ -149,42 +149,42 @@ export const shoppingviewHeaderMenuItems = [
     {
         id: 'electronics',
         label: 'Electronics',
-        path: '/shop/electronics',
+        path: '/shop/listing',
     },
     {
         id: 'clothing',
         label: 'Clothing',
-        path: '/shop/clothing',
+        path: '/shop/listing',
     },
     {
         id:'men',
         label:'Men',
-        path:'/shop/men',
+        path:'/shop/listing',
     },
     {
         id: 'women',
         label: 'Women',
-        path: '/shop/women',
+        path: '/shop/listing',
     },
     {
         id: 'kids',
         label: 'Kids',
-        path: '/shop/kids',
+        path: '/shop/listing',
     },
     {
         id: 'cart',
         label: 'Cart',
-        path: '/shop/cart',
+        path: '/shop/listing',
     },
     {
         id:'watch',
         label: 'Watch',
-        path: '/shop/watch',
+        path: '/shop/listing',
     },
     {
         id:'search',
         label:'Search',
-        path:'/shop/search',
+        path:'/shop/listing',
     },
 ]
 export const filterOptions = {

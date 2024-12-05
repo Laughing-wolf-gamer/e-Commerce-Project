@@ -2,9 +2,7 @@ import Product from "../../db/models/product.model.js";
 
 export const getFilteredProducts = async(req,res)=>{
     try {
-        console.log("Fetching products...: ",req.query);;
         const {category = [],brand = [],sortby = 'price-low-to-high'} = req.query;
-        // console.log(sortby,brand,category);
         let filters = {};
         if(category.length > 0){
             filters.category = {$in: category.split(",")};
@@ -31,7 +29,6 @@ export const getFilteredProducts = async(req,res)=>{
                 break;
         }
         const products = await Product.find(filters).sort(sort);
-        // console.log(products);
         res.status(200).json({Success: true, message: 'Products fetched successfully', products});
     } catch (error) {
         console.error(`Error processing ${error.message}}`)

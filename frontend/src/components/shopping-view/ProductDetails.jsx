@@ -5,10 +5,17 @@ import { Separator } from '../ui/separator'
 import { Avatar, AvatarFallback } from '../ui/avatar'
 import { StarIcon } from 'lucide-react'
 import { Input } from '../ui/input'
+import { setProductsDetails } from '@/store/shop/product-slice'
+import { useDispatch } from 'react-redux'
 
 const ProductDetailsDialogue = ({ProductDetails,open,setOpen,handleAddToCart}) => {
+    const dispatch = useDispatch();
+    const handleDialogueClose = () => {
+        setOpen(false);
+        dispatch(setProductsDetails(null));
+    }
     return (
-        <Dialog open = {open} onOpenChange={setOpen}>
+        <Dialog open = {open} onOpenChange={handleDialogueClose}>
             <DialogContent className = "grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw]">
                 <div className='relative overflow-hidden rounded-lg'>
                     <img

@@ -29,17 +29,22 @@ export const removeFromCart = async  (req,res)=>{
     try {
         const {userId,productId} = req.params;
         if(!userId || !productId) return res.status(401).json({Success:false,message:"Please enter All Data"});
-        const cart = await Cart.findOneAndUpdate({userId}).populate({
-            path: 'items.productId',
-            select: 'image title price salePrice'
-        })
+        
+        const cart = await Cart.findOne({ userId }).populate({
+            path: "items.productId",
+            select: "image title price salePrice",
+        });
         if(!cart) return res.status(404).json({Success:false,message: "Cart Not Found"});
-        cart.items = cart.items.filter(item => item.productId.toString() !== productId)
+        cart.items = cart.items.filter(
+            (item) => item.productId._id.toString() !== productId
+        );
+    
         await cart.save();
-        await Cart.populate({
-            path: 'items.productId',
-            select: 'image title price salePrice'
-        })
+    
+        await cart.populate({
+            path: "items.productId",
+            select: "image title price salePrice",
+        });
         const populateCartItems  = cart.items.map(item => ({
             productId: item.productId ? item.productId._id:null,
             image:item.productId? item.productId.image :null,
@@ -92,13 +97,13 @@ export const fetchCart = async (req,res)=>{
 export const updateCartQuantity = async (req,res)=>{
     try {
         const{userId,productId,quantity} = req.body;
-        if(!userId || !productId || quantity) return res.status(401).json({Success:false,message:"Please enter All Data"});
+        if(!userId || !productId || !quantity) return res.status(401).json({Success:false,message:"Please enter All Data"});
         const product = await Product.findById(productId);
         if(!product) return res.status(404).json({Success:false,message:"Product Not Found"});
         const cart = await Cart.findOne({userId});
         if(!cart) return res.status(404).json({Success:false,message: "Cart Not Found"});
-        const findCurrentProduct = cart.items.findIndex(item => item.productId.toString() === productId)
-        if(!findCurrentProduct) return res.status(404).json({Success:false,message:'Cart Item Not Found'});
+        const findCurrentProduct = cart.items.findIndex(item => item.productId._id.toString() === productId)
+        if(findCurrentProduct === -1) return res.status(403).json({Success:false,message:'Cart Item Not Found'});
         cart.items[findCurrentProduct].quantity = quantity;
         await cart.save();
         await cart.populate({
