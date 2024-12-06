@@ -22,6 +22,45 @@ export const registerFormControls = [
     },
 
 ]
+export const addressFormControls = [
+    {
+        name:'Address',
+        label :"address",
+        placeHolder:'Enter your address',
+        componentType: 'input',
+        type: 'text',
+    },
+    {
+        name:'City',
+        label :"city",
+        placeHolder:'Enter your City',
+        componentType: 'input',
+        type: 'text',
+    },
+    {
+        name:'Pin Code',
+        label :"pinCode",
+        placeHolder:'Enter your Pin Code',
+        componentType: 'input',
+        type: 'text',
+    },
+    {
+        name:'PhoneNumber',
+        label :"phoneNumber",
+        placeHolder:'Enter your Phone Number',
+        componentType: 'input',
+        type: 'text',
+    },
+    {
+        name:'Notes',
+        label :"notes",
+        placeHolder:'Enter your notes',
+        componentType: 'textarea',
+        type: 'text',
+    },
+
+
+]
 export const loginFormControls = [
     {
         name:'email',

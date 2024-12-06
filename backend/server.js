@@ -27,6 +27,7 @@ app.use(cors(
 ))
 app.use(cookieParser());
 
+
 app.use('/api/auth',authRouter)
 app.use('/api/admin',adminRouter)
 app.use('/api/shop/products',shopRoute)
