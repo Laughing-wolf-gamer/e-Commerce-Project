@@ -54,12 +54,10 @@ export const addressFormControls = [
     {
         name:'Notes',
         label :"notes",
-        placeHolder:'Enter your notes',
+        placeHolder:'Enter your Notes',
         componentType: 'textarea',
         type: 'text',
     },
-
-
 ]
 export const loginFormControls = [
     {
