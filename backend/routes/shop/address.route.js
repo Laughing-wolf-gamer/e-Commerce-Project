@@ -4,6 +4,6 @@ import { addAddress, deleteAddress, editAddress, fetchAllAddress } from '../../c
 const router = express.Router();
 router.post('/add',addAddress)
 router.get('/get/:userId',fetchAllAddress);
-router.delete('/delete/:userId/:addressId',deleteAddress);
 router.put('/edit/:userId/:addressId',editAddress);
+router.delete('/delete/:userId/:addressId',deleteAddress);
 export default router;

@@ -2,8 +2,10 @@ import React from 'react'
 
 const ShoppingAccountPage = () => {
     return (
-        <div>
-            Shopping Account
+        <div className='flex flex-col'>
+            <div className='relative h-[300px] w-full'>
+                
+            </div>
         </div>
     )
 }
