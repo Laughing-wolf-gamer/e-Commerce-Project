@@ -31,7 +31,7 @@ app.use('/api/auth',authRouter)
 app.use('/api/admin',adminRouter)
 app.use('/api/shop/products',shopRoute)
 app.use('/api/cart',cartRoute)
-app.use('/api/accounts/address',addressRoute)
+app.use('/api/shop/address',addressRoute)
 
 
 connectToMongo().then(()=>{
