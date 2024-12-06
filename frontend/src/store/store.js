@@ -12,7 +12,7 @@ const store = configureStore({
         adminProducts:adminProductsSlice,
         shopProductSlice:shopProductSlice,
         shopCardSlice:shoppingCartSlice,
-        shopAddressSlice:addressSlice
+        shopAddress:addressSlice
 	}
 })
 

@@ -49,7 +49,7 @@ const addressSlice = createSlice({
 })
 
 export const addAddresses = createAsyncThunk('/addresses/addNewAddress',async (formData) =>{
-    const result = await axios.get('http://localhost:5000/api/shop/address/add',formData,{
+    const result = await axios.post('http://localhost:5000/api/shop/address/add',formData,{
         withCredentials: true,
     });
     return result.data;
@@ -59,13 +59,14 @@ export const fetchAddresses = createAsyncThunk('/addresses/fetchAddress',async (
     return result.data;
 })
 export const editAddress = createAsyncThunk('/addresses/editAddress',async ({userId,addressId,formData}) =>{
+    console.log("Address Id: ",addressId);
     const result = await axios.put(`http://localhost:5000/api/shop/address/edit/${userId}/${addressId}`,formData,{
         withCredentials: true,
     });
     return result.data;
 })
 export const deleteAddress = createAsyncThunk('/addresses/editAddress',async ({userId,addressId}) =>{
-    const result = await axios.put(`http://localhost:5000/api/shop/address/delete/${userId}/${addressId}`);
+    const result = await axios.delete(`http://localhost:5000/api/shop/address/delete/${userId}/${addressId}`);
     return result.data;
 })
 

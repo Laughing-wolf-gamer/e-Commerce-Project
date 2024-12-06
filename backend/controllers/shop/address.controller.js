@@ -9,9 +9,13 @@ export const addAddress = async (req,res)=>{
 			state,
 			country,
 			phoneNumber,
-			postalCode,
+			pinCode,
+			notes
 		} = req.body;
-		const newAddress = new Address({userId, address, city, state, country, phoneNumber, postalCode});
+		if(!userId || !address || !city || !state || !phoneNumber || !pinCode){
+			return res.status(400).json({Success: false, message: 'All fields are required'});
+		}
+		const newAddress = new Address({userId, address, city, state, country, phoneNumber, pinCode,notes});
 		await newAddress.save();
 		res.status(201).json({Success: true, message: 'Address added successfully!', result: newAddress});
 	} catch (error) {
@@ -36,6 +40,7 @@ export const editAddress = async (req,res)=>{
 	try {
 		const {userId,addressId} = req.params;
 		const formData = req.body;
+		console.log(userId,addressId,formData);
 		if(!userId || !addressId) return res.status(404).json({Success: false, message: 'User Id is required'});
 		const addresses = await Address.findOneAndUpdate({_id:addressId,userId},formData,{new:true});
 		if(!addresses) return res.status(404).json({Success: false, message: 'No address found'});

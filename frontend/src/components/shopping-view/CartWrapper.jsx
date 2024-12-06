@@ -5,9 +5,11 @@ import CartItemsContent from './CartItemsContent'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteCartItems, updateToCart } from '@/store/shop/car-slice'
 import { useToast } from '@/hooks/use-toast'
+import { useNavigate } from 'react-router-dom'
 
-const CartWrapper = ({carItems}) => {
+const CartWrapper = ({carItems,setOpenCartSheet}) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {user} = useSelector(state => state.auth);
     const {toast} = useToast();
     const handleOnCartItemDelete = async (item) => {
@@ -45,7 +47,10 @@ const CartWrapper = ({carItems}) => {
                     <span className='font-bold'>₹ {totalCarAmount}</span>
                 </div>
             </div>
-            <Button className = {"w-full mt-7"}>CheckOut</Button>
+            <Button onClick = {()=> {
+                navigate("/shop/checkout");
+                setOpenCartSheet(false);
+            }} className = {"w-full mt-7"}>CheckOut</Button>
             
         </SheetContent>
     )

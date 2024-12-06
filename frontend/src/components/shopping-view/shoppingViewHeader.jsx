@@ -54,7 +54,7 @@ const HeaderRightContent = ({user})=>{
                 <ShoppingCart className='h-6 w-6'/>
                 <span className='sr-only'>User Cart</span>
             </Button>
-            <CartWrapper carItems={cartItems}/>
+            <CartWrapper carItems={cartItems} setOpenCartSheet = {setOpenCartSheet}/>
         </Sheet>
         <DropdownMenu>
             <DropdownMenuTrigger asChild >

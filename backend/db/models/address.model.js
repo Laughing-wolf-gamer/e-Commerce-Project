@@ -5,9 +5,10 @@ const addressSchema = new mongoose.Schema({
 	address:String,
 	city:String,
     state:String,
-    country:String,
+    country:{type:String,default:'india'},
 	phoneNumber:String,
-    postalCode:String,
+    pinCode:String,
+    notes:String,
 },{timestamps:true})
 const Address = mongoose.model('address',addressSchema);
 export default Address;
