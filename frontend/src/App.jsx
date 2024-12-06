@@ -6,7 +6,7 @@ import AdminViewLayout from "./components/admin-view/layout"
 import AdminDashboard from "./pages/admin-view/dashboad"
 import AdminFeatures from "./pages/admin-view/features"
 import AdminProducts from "./pages/admin-view/products"
-import AdminOrders from "./pages/admin-view/orders"
+import AdminOrders from "./pages/admin-view/AdminOrdersView"
 
 import NotFound from "./pages/not-found"
 

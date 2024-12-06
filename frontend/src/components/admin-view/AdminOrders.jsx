@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Button } from '../ui/button'
 import { Dialog } from '../ui/dialog'
-import OrderDetailsView from './OrderDetailsView'
+import AdminOrdersDetailsView from './AdminOrdersDetailsView'
 
-const Orders = () => {
+const AdminOrderLayout = () => {
     const [openDetailsDialogue, setOpenDetailsDialogue] = useState(false);
-    return (
-        <Card>
+	return (
+		<Card>
             <CardHeader>
-                <CardTitle>Order History</CardTitle>
+                <CardTitle>All Orders</CardTitle>
             </CardHeader>
             <CardContent>
                 <Table>
@@ -33,16 +33,16 @@ const Orders = () => {
                             <TableCell>₹ 1000</TableCell>
                             <TableCell>
                                 <Dialog open = {openDetailsDialogue} onOpenChange={setOpenDetailsDialogue}>
-                                    <Button onClick = {()=> setOpenDetailsDialogue(true)}  className='btn btn-primary'>View Details</Button>
-                                    <OrderDetailsView/>
+                                    <Button onClick = {()=> setOpenDetailsDialogue(true)} className='btn btn-primary'>View Details</Button>
+                                    <AdminOrdersDetailsView/>
                                 </Dialog>
                             </TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>
             </CardContent>
-        </Card>
-    )
+      </Card>
+	)
 }
 
-export default Orders
+export default AdminOrderLayout
